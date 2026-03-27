@@ -4,6 +4,21 @@ A collection of agent skills that extend capabilities across planning, developme
 
 Pulled from https://github.com/mattpocock/skills/tree/main. Original author: Matt Pocock (https://github.com/mattpocock). This copy includes one skill updated to be tool-agnostic.
 
+## Install Locally
+
+Moves all skill folders (recursive) into `~/.agents/skills`.
+
+```bash
+# macOS/Linux
+bash ./install-skills-unix.sh
+
+# Windows (Git Bash)
+bash ./install-skills-windows.sh
+
+# Windows (PowerShell or CMD, no Git Bash)
+./install-skills-windows.cmd
+```
+
 ## Planning & Design
 
 These skills help you think through problems before writing code.
