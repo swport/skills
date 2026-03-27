@@ -13,9 +13,9 @@ DEST_DIR="${HOME_DIR}/.agents/skills"
 mkdir -p "$DEST_DIR"
 
 TMP_LIST="$(mktemp)"
-find "$SOURCE_ROOT" -type f -name "SKILL.md" > "$TMP_LIST"
+find "$SOURCE_ROOT" -type d -name ".*" -prune -o -type f -name "SKILL.md" -print > "$TMP_LIST"
 
-MOVED=0
+COPIED=0
 while IFS= read -r skill_file; do
   skill_dir="$(dirname "$skill_file")"
   skill_name="$(basename "$skill_dir")"
@@ -26,9 +26,9 @@ while IFS= read -r skill_file; do
   fi
 
   rm -rf "$target_dir"
-  mv "$skill_dir" "$target_dir"
-  MOVED=$((MOVED + 1))
+  cp -R "$skill_dir" "$target_dir"
+  COPIED=$((COPIED + 1))
 done < "$TMP_LIST"
 
 rm -f "$TMP_LIST"
-echo "Moved $MOVED skill(s) to $DEST_DIR"
+echo "Copied $COPIED skill(s) to $DEST_DIR"
